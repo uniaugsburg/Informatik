@@ -1,0 +1,228 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage[a4paper, total={7.5in, 10.5in}]{geometry}
+
+
+\title{Logik f\"ur Informatiker - Zusammenfassung}
+
+\DeclareRobustCommand*{\tautequiv}{%
+  \Relbar\joinrel\mathrel{|}
+  \mathrel{|}\joinrel\Relbar%
+}
+
+\begin{document}
+	\section*{Symbole}
+		\begin{align*}
+			\tautequiv & \text{ \"Aquivalenz zwischen Formeln (haben der gleiche Model)}\\
+			\Leftrightarrow & \text{ \"Aquivalente meta-sprachlichen Aussagen die wahr oder falsch sind}\\
+			\vdash &\ M \vdash A, \text{ A is aus M herleitbar}\\
+			\hline
+			\neg & \text{ Negation eines Pr\"adikates}\\
+			\wedge & \text{ Logische Und-Operator}\\
+			\vee & \text{ Logische Oder-Operator}\\
+			\rightarrow & \text{ Implikation}\\
+			\leftrightarrow & \text{ \"Aquivalenz innerhalb von Formeln}\\
+			\forall, \exists & \text{ Quantoren (Der Bindungsbereich endet so sp\"at wie m\"oglich)}\\
+		\end{align*}
+	\section{Pr\"adikatenlogik 1. Stufe}
+		\subsection{Syntax}
+			\begin{align*}
+				\text{Signatur } & (\mathcal{F, P}) & \\
+				\mathcal{X}\ & := \{x_0, x_1, \ldots\} & \text{Variablen}\\
+				\mathcal{F}\ & := \mathcal{F}^0 \cup \mathcal{F}^1 \cup \mathcal{F}^2 \cup \ldots & \text{Menge der Funktionen}\\
+				& c \in \mathcal{F}^0 & \text{Konstante}\\
+				& f, g, h \in \mathcal{F}^n & \text{ n-stellige Funktionssymbole}\\
+				\mathcal{P}\ & := \mathcal{P}^0 \cup \mathcal{P}^1 \cup \mathcal{P}^2 \cup \ldots & \text{Menge der Pr\"adikate}\\
+				& p, q, r \in \mathcal{P}^0 & \text{Konstanten}\\
+				& P, Q, R \in \mathcal{P}^n & \text{ n-stellige Pr\"adikatensymbole}\\\hline
+				\textbf{(T1) } &  x_0, x_1, \ldots \in Term& \\
+				\textbf{(T2) } & f \in \mathcal{F}^n, t_1, \ldots, t_n \in Term \Rightarrow f(t_1, \ldots, t_n) \in Term & \\
+				\underline{\text{Speziell}}\ & c \in Term & \\
+				\textbf{(T1') } & \frac{\qquad}{x}  x \in \mathcal{X} & \\
+				\textbf{(T2') } & \frac{t_1, \ldots, t_n}{f(t_1, \ldots, t_n)}  f \in \mathcal{F}^n & \\
+				\underline{\text{Speziell}}\ & \frac{\qquad}{c} c \in \mathcal{F}^0 & \\
+			\end{align*}
+		\subsection{Syntax der Formeln}
+			\begin{align*}
+				\textbf{(A0) } & At \subseteq For\\
+				\textbf{(A1) } & t_1, t_2 \in Term \Rightarrow t_1 = t_2 \in  At \qquad(\frac{\qquad}{t_1 = t_2} \quad t_1, t_2 \in Term)\\
+				\textbf{(A2) } & P \in \mathcal{P}^n, t_1,\ldots,t_n \in Term \Rightarrow P(t_1, \ldots, t_n) \in  At\\
+				& p \in At & \underline{\text{speziell}}\ \\
+				\textbf{(A3) } & A \in For \Rightarrow (\neg A) \in For\\
+				\textbf{(A4) } & A, B \in For \Rightarrow (A \wedge B), (A \vee B), (A \rightarrow B), (A \leftrightarrow B) \in For\\
+				\textbf{(A5) } & A \in For \Rightarrow (\forall x A), (\exists x A) \in For\\
+			\end{align*}
+			\begin{align*}
+				& \textit{Universelle Formeln} & & \textit{Existentielle Formeln}\\
+				\textbf{(i) } & \frac{}{\ A\ \ } A \text{ Quantorenfrei} & \textbf{(i) } & \frac{}{\ A\ \ } A \text{ Quantorenfrei}\\
+				\textbf{(ii) } & \frac{A, B}{A \wedge B} & \textbf{(ii) } & \frac{A, B}{A \wedge B}\\
+				\textbf{(iii) } & \frac{A, B}{A \vee B} & \textbf{(iii) } & \frac{A, B}{A \vee B}\\
+				\textbf{(iv) } & \frac{A}{\forall x A} & \textbf{(iv) } & \frac{A}{\exists x A}\\
+			\end{align*}
+		\subsection{Semantik}
+			\begin{align*}
+				\textbf{Belegung } & \beta \\
+				\textbf{Interpretation } & I\\
+				\textbf{Teilinterpretation } & J & I \subseteq J\\
+				& I \subseteq J \text{ dann gilt } J,\beta \models A \Rightarrow I,\beta \models A\\
+				\textbf{Grundbereich (Domain) } & D (D_I)\\
+				& d \in D_I, \beta_{x}^{d} = \begin{cases*}d & \text{ f\"ur } $x = y$\\ \beta(y) & \text{ f\"ur } $y \neq x$ \end{cases*}\\
+				\textbf{Erf\"ullbarkeit } & \exists I, \beta \models A\\
+				\textbf{Unerf\"ullbar } & \neg\exists I,\beta \models A\\
+				\textbf{G\"ultigkeit } & \forall I,\beta \models A \ \ (\emptyset \models A)\\
+				\textbf{Auswertung } & d_{I, \beta}\\
+				\beta \ & \{x_0, x_1, \ldots\} \rightarrow D_I & \text{Funktion}\\
+				\text{Zeichen } & f, P, p & \\
+				\text{Funktionen/Pr\"adikate } &  f^I, P^I, p^I \\
+				1\text{-stellige Pr\"adikate } & P^I: D \rightarrow \{T, F\}\\
+			\end{align*}
+			\begin{align*}
+				\textbf{(T1) } & x_{I, \beta} & :\Leftrightarrow\ & \beta(x)\\
+				\textbf{(T2) } & f(t_1, \ldots, t_n)_{I, \beta} &:\Leftrightarrow\ &  f^I((t_1)_{I, \beta}, \ldots, (t_n)_{I, \beta})\\
+				\textbf{(A1) } & I, \beta \models t_1 = t_2 &:\Leftrightarrow\ &  (t_1)_{I, \beta} = (t_2)_{I, \beta}\\
+				\textbf{(A2) } & I, \beta \models P(t_1, \ldots, t_n) &:\Leftrightarrow\ &  (t_1)_{I, \beta} = (t_2)_{I, \beta}\\
+				\textbf{(A3) } & I, \beta \models \neg A &:\Leftrightarrow\ & \text{nicht } I, \beta \models A \\
+				& & :\Leftrightarrow\ &  I, \beta \not\models A\\
+				\textbf{(A4) } & I, \beta \models A \wedge B &:\Leftrightarrow\ &  I, \beta \models A \text{ und } I, \beta \models B\\
+				& I, \beta \models A \vee B & :\Leftrightarrow\ & I, \beta \models A \text{ oder } I, \beta \models B\\
+				& I, \beta \models A \rightarrow B & :\Leftrightarrow\ & I, \beta \not\models A \text{ oder } I, \beta \models B\\
+				& I, \beta \models A \leftrightarrow B & :\Leftrightarrow\ & (I, \beta \not\models A \text{ und } I, \beta \not\models B) \text{ oder } (I, \beta \models A \text{ und } I, \beta \models B)\\
+				\textbf{(A5) } & I, \beta \models \forall x A & :\Leftrightarrow\ & \text{f\"ur alle d $\in$ D gilt I}, \beta^{d}_{x} \models A\\
+				& I, \beta \models \exists xA & :\Leftrightarrow\ & \text{es gibt ein d $\in$ D f\"ur die gilt I}, \beta^{d}_{x} \models A\\
+			\end{align*}
+	\section{Hilbert Kalk\"ul}
+		\begin{align*}
+			\textbf{(Trivial) } & & & A \rightarrow A &\ A \in For \\
+			\textbf{(Ax1) } & & & A \rightarrow (B \rightarrow A) &\ A, B \in For\\
+			\textbf{(Ax2) } & & & (A \rightarrow (B \rightarrow C)) \rightarrow \Big((A \rightarrow B) \rightarrow (A \rightarrow C)\Big) &\ A, B, C \in For\\
+			\textbf{(Ax3) } & & & (\neg A \rightarrow \neg B ) \rightarrow (B \rightarrow A) &\ A, B \in For\\
+			\textbf{(Ax4) } & & & (\forall x A) \rightarrow (A[^t/_x]) & \text{ SP (Spezialisierung)}\\
+			\textbf{(Ax5) } & & & A \rightarrow \forall x A, \text{ falls } x \not \in FV(A) & \text{ GE (Generalisierung)}\\
+			\textbf{(Ax6) } & & & (\forall x A \rightarrow B) \rightarrow \Big( ( \forall x A ) \rightarrow (\forall x B) \Big) & \text{ DA (Distributivit\"at)}\\
+			\textbf{(Ax7) } & & & x = x & \text{ RE (Reflexivit\"at)}\\
+			\textbf{(Ax8) } & & & x = y \rightarrow (A \rightarrow A'), & \text{ GL (Gleichheit)}\\
+			& & & \text{wobei A quantorenfrei ist und A' aus A}\\
+			& & & \text{entsteht, indem einige (oder kein) } x \\
+			& & & \text{durch } y \text{ ersetzt werden }\\
+			\textbf{(MP) } & & & \frac{A, A \rightarrow B}{B} & A, B \in For \\
+			\textbf{(2.7) } & \textit{i } & & M \vdash A \wedge M \vdash A \rightarrow B, \text{ dann }  M \vdash B\\
+			& \textit{ii } & & M \vdash \neg A \rightarrow \neg B, \text{ dann }  M \vdash \{A\} \rightarrow B\\
+			\textbf{(2.8) } & & & M \vdash A \rightarrow B \Leftrightarrow M \cup \{A\} \vdash B & \textit{Deduktion}\\
+			\textbf{(2.9) } & \textit{i } & & \vdash (A \rightarrow B) \rightarrow \Big( ( B \rightarrow C ) \rightarrow (A \rightarrow C) \Big) & \textit{transitivit\"at von} \rightarrow\\
+			& \textit{ii } & & \vdash \neg A \rightarrow (A \rightarrow B) & (\neg A \wedge A \rightarrow B) (\textit{ex falso quod libet})\\
+			& \textit{iii } & & \vdash \neg\neg A \rightarrow A\\
+			& \textit{iv } & & \vdash A \rightarrow \neg\neg A\\
+			& \textit{v } & & \vdash (\neg A \rightarrow A) \rightarrow A & \textit{ein Widerspruchsbeweis}\\
+		\end{align*}
+		\begin{align*}
+			\textbf{(2.10)}\textit{i } & \frac{A \rightarrow B, B \rightarrow C}{A \rightarrow C}\\
+			\textit{ii } & \frac{\neg\neg A}{A}\\
+		\end{align*}
+	\section*{Variablen} 
+		\begin{align*}
+			i) &\ t \in Term, FV(t) := \text{ die Menge der in } t \text{ auftretenden Variablen,} BV(t) = \emptyset\\
+			ii) &\ - FV(t_1 = t_2) := FV(t_1) \cup FV(t_2)\\
+			&\ - BV(t_1 = t_2) := \emptyset\\\hline
+			&\ - FV(P(t_1, \ldots, t_n)) := \cup^{n}_{i=1} FV(t_i)\\
+			&\ - BV(\ldots) = \emptyset\\\hline
+			&\ - FV(\neg A) := FV(A)\\
+			&\ - BV(\neg A) := BV(A)\\\hline
+			&\ - FV(A \rightarrow B) := FV(A) \cup FV(B)\\
+			&\ - BV(A \rightarrow B) := BV(A) \cup BV(B)\\\hline
+			&\ - FV(\forall x A) := FV(A) \backslash\{x\}\\
+			&\ - BV(\forall x A) := BV(A) \cup \{x\}\\
+		\end{align*}
+		\subsection*{Substitutionen}
+			\begin{align*}
+				\textbf{(T1) } & x[^t/_x] :\equiv t\\
+				& y[^t/_x] :\equiv y\\
+				\textbf{(T2) } & f(t_1, \ldots, t_n) [^t/_x] :\equiv f(t_1[^t/_x], \ldots, t_n[^t/_x])\\
+				& \text{speziell } c[^t/_x] :\equiv c \quad c \in \mathcal{F}^0\\
+				\textbf{(A1) } & P(t_1, \ldots, t_n) [^t/_x] :\equiv P(t_1[^t/_x], \ldots, t_n[^t/_x])\\
+				\textbf{(A2) } &\\
+				\textbf{(A3) } & (\neg A) [^t/_x] :\equiv \neg A[^t/_x]\\
+				\textbf{(A4) } & (A \rightarrow B) [^t/_x] :\equiv (A[^t/_x] \rightarrow B[^t/_x])\\
+				\textbf{(A5) } & (\forall x A) [^t/_x] :\equiv \forall x A\\
+				& (\forall y A) [^t/_x] :\equiv 
+				\begin{cases*}
+					\forall y A & \text{ f\"ur } $ x \not \in FV(\forall y A)$\\
+					\forall y A[^t/_x] & \text{ sonst, und} $y \not \in FV(t)$\\
+					\forall z A[^z/_y][^t/_x] & \text{ sonst,} $z \not \in FV(t) \cup FV(A)$,  \textit{ z hei\ss t frisch}\\
+				\end{cases*}
+			\end{align*}
+		\subsection*{Gentzen Kalk\"ul}
+			$M \subseteq For\\M \vdash_G A :\equiv \text{ A ergibt sich (syntaktisch) aus M}$\\
+			\underline{Links} bzw. \underline{rechts} bedeutet dass der Operator ($\rightarrow, \neg, \vee, \wedge$) \underline{links} bzw. \underline{rechts} von der $\vdash_G$ steht.\\
+			\begin{align*}
+				\textbf{Axiom } & \frac{}{M \cup \{A\} \vdash_G A} \qquad\\\\
+				\hline\\
+				& \textbf{ Links} & \textbf{Rechts} & \\
+				\textbf{Implikation } & \frac{M \cup \{\neg C\} \vdash_G A\quad\ M \cup \{B\} \vdash_G C}{M \cup \{A \rightarrow B\} \vdash_G C} & \frac{M \cup \{A\} \vdash_G B}{M \vdash_G A \rightarrow B}\\
+				\textbf{Negation } & \frac{M \cup \{\neg B\} \vdash_G A}{M \cup \{\neg A\} \vdash_G B} & \frac{M \cup \{A\} \vdash_G \neg B}{M \cup \{B\} \vdash_G \neg A}\\
+				\textbf{Konjunktion } & \frac{M \cup \{A, B\} \vdash_G C}{M \cup \{A \wedge B\} \vdash_G C} & \frac{M \vdash_G A\quad\ M \vdash_G B}{M \vdash_G A \wedge B}\\
+				\textbf{Disjunktion } & \frac{M \cup \{A\} \vdash_G C\quad\ M \cup \{B\} \vdash_G C}{M \cup \{A \vee B\} \vdash_G C} & \frac{M \cup \{\neg B\} \vdash_G A}{M \vdash_G A \vee B}\\
+			\end{align*}
+		\subsection*{Resolution}
+			Beweis durch Resolution ist ein Verfahren um zu zeigen ob eine Formel Erf\"ullbar ist oder nicht.\\
+			Eine Formel $A$ in KNF wenn $A = \overbrace{(k_1 \vee k_2 \vee \ldots \vee k_n)}^{\text{Klausel}} \wedge \ldots \wedge (k_1 \vee \ldots \vee k_n)$\\
+			Eine Klausel einer Formel $K_i := \{ \overbrace{k_1, \ldots, k_n}^{\text{Literale}}\}$\\
+			Eine negiertes Literal $l \in K_i :\equiv \bar{l} \text{ und } \bar{\bar{l}} :\equiv l$\\
+			Eine Resolvente $R := (\ K_i \backslash \{l\}\ ) \cup (\ K_j \backslash \{\bar{l}\}\ )$\\
+			Ein Resolutionsschritt f\"ugt $A$ eine Resolvente zweier Klauseln hinzu. Das Ergebnis ist $Res*(A)$\\
+			$K$ ist unerf\"ullbar wenn $\emptyset \in Res*(A)$\\
+		\subsection*{Hoare Kalk\"ul}
+			t Totale Korrektheit\\
+			p Partielle Korrektheit
+			\begin{align*}
+				\textbf{Zuweisungsaxiom } & \frac{}{\{B[^E/_x]\} \quad x = E; \{B\}} & (=p)\\
+				& \frac{}{\{D_E \wedge B[^E/_x]\} \quad x = E; \{B\}} & (=t)\\
+				\textbf{Konsequensregel } & \frac{A \Rightarrow B, \quad \{B\}\ S\ \{C\}, \quad C \Rightarrow D}{\{A\}\ S\ \{D\}} & (K) & \\
+				\textbf{Sequentielle Komposition } & \frac{\{A\}\ S\ \{B\}, \quad \{B\}\ T\ \{C\}}{\{A\}\ S;T\ \{C\}} & (sK) & \\
+			\end{align*}
+			\begin{align*}
+				\textbf{Bedingte Anweisung } & \frac{\{A \wedge B\}\ S\ \{C\}, \quad \{A \wedge \neg B\} T \{C\}}{\{A\} \texttt{ if } (B)\ S \texttt{ else } T \{C\}} & (if) &\\
+				\textbf{Schleifeninvariante } & \frac{\{A \wedge B\}\ S\ \{A\}}{\{A\} \texttt{ while } (B)\ S\ \{A \wedge \neg B\}} & (Wp)\\
+				\textbf{Terminierungsgr\"o\ss e } & (1)\ \forall z \in Z: \{A \wedge B \wedge t = z\} S \{A \wedge t < z\}\\
+				& (2)\ A \wedge B \Rightarrow t \geq 0 \\
+				& \overline{\texttt{while } (B)\ S\ (A \wedge \neg B)} & (Wt)\\
+				\textbf{Abgeleitete } & (1)\ \{C\} \textit{ init } \{A\}\\
+				\textbf{Schlussregeln } & (2)\ \{A \wedge B\}\ S\ \{A\}\\
+				& (3)\ A \wedge \neg B \Rightarrow D\\
+				& \overline{\{C\} \textit{ init } \texttt{while } (B)\ S\ \{D\}} & (Sp)\\\\
+				& (1)\ \{C\} \textit{ init } \{A\}\\
+				& (2)\ \forall z \in \mathbb{Z}: \{A \wedge B \wedge t = z\}\ S \{A \wedge B < z\}\\
+				& (3)\ A \wedge B \Rightarrow t \geq 0\\
+				& (4)\ A \wedge \neg B \Rightarrow D\\
+				& \overline{\{C\} \textit{ init } \texttt{while } (B)\ S\ \{D\}} & (St)
+			\end{align*}
+		\subsection*{Temporale Logik (LTL)}
+			Ein Ablauf $\pi = s_0, s_1, \ldots$ ist eine unendliche Folge von Zust\"anden $s_i \in S$\\
+			Eine Bewertung $L: S \rightarrow \mathfrak{P}(\mathcal{P})$
+				\begin{align*}
+					\textbf{G $\Box$ } & \text{ Globally, von jetzt an immer}\\
+					\textbf{F $\Diamond$ } & \text{ Finally, irgendwann (ab jetzt)}\\
+					\textbf{X \large{$\circ$} } & \text{ neXt, im n\"achsten Zustand}\\
+					\textbf{U } \text{ Until}
+				\end{align*}
+				\subsubsection*{Syntax}
+					\begin{align*}
+						\textbf{(T1) } & p \in \mathcal{P} \Rightarrow p \in TFor\\
+						\textbf{(T2) } & A, B \in TFor \Rightarrow \neg A, A \wedge B, A \vee B, A \rightarrow B, A \leftrightarrow B \in TFor\\
+						\textbf{(T3) } & A \in TFor \Rightarrow \textbf{G}A, \textbf{F}A, \textbf{X}A \in TFor\\
+						\textbf{(T4) } & A, B \in TFor, A \textbf{ U } B \in TFor & \text{ (until)}
+					\end{align*}
+				\subsubsection*{Semantik}
+					\begin{align*}
+						\textbf{(T1) } & \pi \models p \text{ wenn } p \in L(s_0)\\
+						\textbf{(T2) } & \pi \models \neg A, \text{ wenn nicht } \pi \models A\\
+						& \pi \models A \vee B, \text{ wenn } \pi \models A \text{ oder } \pi \models B\\
+						& \pi \models A \wedge B, \text{ wenn } \pi \models A \text{ und } \pi \models B\\
+						& \text{usw}\\
+						\textbf{(T3) } & \pi \models \textbf{X}A, \text{ wenn } \pi^1 \models A\\
+						& \pi \models \textbf{G}A, \text{ wenn } \ldots\\
+						& \pi \models \textbf{F}A, \text{ wenn } \ldots\\
+						\textbf{(T4) } & \pi \models A \textbf{ U } B, \text{ wenn es ein j } \geq 0 \text{ gibt mit } \pi^j \models B \text{ und f\"ur alle 0 } \leq i < j: \pi^i \models A
+					\end{align*}
+\end{document}

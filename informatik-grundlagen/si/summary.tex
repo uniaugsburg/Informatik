@@ -1,0 +1,48 @@
+\documentclass{article}
+\usepackage[a4paper, total={7.5in, 10.5in}]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+
+\title{Systemnahe Informatik - Zusammenfassung}
+
+\begin{document}
+	\section*{Datenformat}
+		\begin{align*}
+			\textbf{Bit } & \text{Hat ein 0/1 Wert (an oder aus) (true oder false)}\\
+			\textbf{Byte } & \text{Folge von 8 Bits}\\
+			\textbf{Unsigned Integer } & \text{2 Bytes gross}\\
+			& \text{Repr\"asentiert eine ganze Zahl zwischen 0 und }2^{n-1} & n:\text{anzahl Bits}\\
+			\textbf{Two's Complement } & \texttt{-n \ldots128\ 64\ 32\ 16\ \ 8\ \ 4\ \ 2\ \ 1}\\
+			& \texttt{1 \ \ \ \ \ \ 1\ \ 1\ \ 0\ \ 0\ \ 0\ \ 0\ \ 1\ \ 1} & -n + 64 + 2 + 1\\
+			\textbf{(Signed) Integer } & \\
+			\textbf{Floating point numbers } & \\
+			\textbf{One's Complement } & \\
+			\textbf{Gleitkommazahl } & x = m \times b^e\\
+			& x = (-1)^s \times 1.m \times 2^{e-b}\\
+			& 123 = 1.23 \times 10^2 = 1.921875 \times 2^{21-15}\\
+			&\ \ \ \ = (-1)^0 \times (1.1110110000)_2 \times 2^{(10101)_2 - (01111)_2}
+		\end{align*}
+\begin{tabular}{p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}}
+	0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 & 11 & 12 & 13 & 14 & 15 & 16\\
+	\begin{itemize}[label={}]
+		\setlength\itemsep{-1.8em}
+		\item \texttt{378D8D,011}
+		\item \texttt{378D8D,011}
+	\end{itemize} & 378D8D,011 & 378D8D,011 & 378D8D,011 & 378D8D,011 & 378D8D,011 & 378D8D,011 & 378D8D,011 & 378D8D,011 & 378D8D,011 & 378D8D,011 & 378D8D,011 & 378D8D,011 & 378D8D,011 & 378D8D,011 & 378D8D,011\\
+	% 2 & 3 & 4 & 5 & 6
+\end{tabular}
+	\section*{Datenformat}
+		\begin{align*}
+			\textbf{Bin\"ar } & \texttt{10110001011010110000000010110101}\\
+			\textbf{Hexadezimal } & \texttt{0xB16B00B5} & \text{Big Endian}\\
+			& \texttt{0xB5006BB1} & \text{Little Endian}\\
+		\end{align*}
+	\section*{Caches}
+		\begin{align*}
+			\textbf{Cache-Eintrag } & \noindent\fbox{
+			\texttt{Tag | (Statusbits) | W$_1$, \ldots, W$_n$}}\\
+			\textbf{Tag / Etikett } & \text{Kennzeichnung die die Adressen der $n$ W\"orter beschreibt}\\
+			\textbf{Set / Index } & \text{Indikator (bin\"ar) f\"ur den Satz}\\
+			\textbf{Blockoffset / Wortadresse } & \text{Indikator (bin\"ar) f\"ur ein Wort im Block}\\
+		\end{align*}
+\end{document}

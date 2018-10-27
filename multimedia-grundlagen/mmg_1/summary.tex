@@ -1,0 +1,150 @@
+\documentclass[8pt]{article}
+\usepackage{mathtools}
+\usepackage{amsfonts}
+\usepackage[a4paper, total={7.5in, 10.5in}]{geometry}
+
+\begin{document}
+	\section{Grundlegende Mathematik}
+		\subsection{Komplexe Zahlen}
+			\begin{align*}
+				\text{Sei }z \in \mathbb{Z} \text{ }& \\
+				\textbf{Karth. Darstellung } 			& z = x + yi \quad x, y \in \mathbb{R} \\
+				\textbf{Polardarstellung } 				& z = r [ \text{ cos }(\varphi) + \text{ sin }(\varphi)i ] = r \cdot e^{i \varphi} \\
+														& \varphi = arg(z) = \tan^{-1} \Big(\frac{x}{y}\Big) = \text{arc}\tan \Big(\frac{x}{y}\Big), z \neq 0 \\
+				\textbf{Komplex konjugiert } 			& \overline{z} = z^{*} = x - yi \\
+				\textbf{Betrag } 						& |z| = \sqrt{x^2 + y^2} \text{ und } |z| = r \\
+				\textbf{Karth. $\leftrightarrow$ Polar }& x = r \text{ cos }(\varphi), y = r \text{ sin }(\varphi) \\
+				\textbf{cos($x$) } & = \frac{e^{i x} + e^{-i x}}{2}\\
+				\textbf{sin($x$) } & = \frac{e^{i x} - e^{-i x}}{2i}\\
+				\textbf{$e^{ix}$ } & = \text{cos ($x$) + i sin ($x$)}\\
+				\textbf{Rotationsmatrix } & \begin{bmatrix}\cos \Theta & -\sin \Theta \\ \sin \Theta & \cos \Theta \end{bmatrix}\\
+			\end{align*}
+		\subsection{Ableitungen}
+			\begin{align*}
+				\textbf{Konstante } 	& \frac{\partial}{\partial t} [C \cdot f(t)] & = C \cdot \frac{\partial f(t)}{\partial t} & = C \cdot \frac{\partial}{\partial t} f(t)\\
+				\textbf{Faktorregel } 	& \frac{\partial}{\partial t} [C \cdot f(t)] & = C \cdot \frac{\partial f(t)}{\partial t} & = C \cdot \frac{\partial}{\partial t} f(t)\\
+				\textbf{Summenregel } 	& \frac{\partial}{\partial t} [f(t) + g(t)] & = \frac{\partial f(t)}{\partial t} + \frac{\partial g(t)}{\partial t} & \\
+				\textbf{Kettenregel } 	& \frac{\partial}{\partial t} f(x(t)) & = \frac{\partial f(x)}{\partial x} \frac{\partial x(t)}{\partial t} & = \frac{\partial f}{\partial x}\frac{\partial x}{\partial t}\\
+			\end{align*}
+		% \columnbreak
+	\section{Signalverarbeitung}
+		\subsection{Digitale Signale}
+		\textit{Ein Signal kann als eine Funktion definiert werden,
+die in irgendeiner Weise Information \"uber den Zustand
+oder das Verhalten eines physikalischen Systems enth\"alt.}\\\\
+		AC Signal: $x(t) \qquad t \in \mathbb{R}$\\
+		DC Signal: $x[n] = x(nT)$\\
+		$t = n \cdot T \qquad n \in \mathbb{Z}$\\
+		\begin{align*}
+			\textbf{Abtastperiode } & T := \text{ Zeit zwischen Abtastungen dauert T Zeit}\\
+			\textbf{Abtastfrequenz } & f_s = \frac{1}{T} \text{ Anzahl der Abtastwerte pro Zeit}\\
+			\textbf{Frequenz } & f \text{ Anzahl der Schwingungen pro Zeiteinheit}\\
+			\textbf{Normalisierte Frequenz } & f_{norm} = \frac{f}{f_s}\\
+			\textbf{Normalisierte Darstellung } & x[n]: n \text{ ist einheitenloser Index}\\
+			& \text{T} [\text{ in Sekunden }] \rightarrow 1 [\text{ einheitenlos }]\\
+			\textbf{Bandbreite } & f_B = f_\text{max} - f_\text{min}  \text{ Breite des Signals (ohne Wiederholung)}\\
+			\textbf{Abtasttheorem } & f_s > 2 \cdot f_B \Leftrightarrow f_B < \frac{f_s}{2}. \text{Gilt } f_B \geq \frac{f_s}{2} \text{ so kommt es zu Aliasing}\\
+			\textbf{Periodische Folge } & x[n] = x[n + N], N \in \mathbb{Z}\\
+			\textbf{Quantisierte Signale } & \hat{x}[n] \text{ Kodierung eines Signals nach Bits}\\
+			& \Delta = \frac{2X_m}{2^{B+1}} = \frac{X_m}{2^B} = 2^{-B}X_m, X_m:= max(x[n]),\\
+			& \text{B Bits in Kodierung}\\
+			\textbf{Quantisierungsfehler } & e[n] = \hat{x}[n] - x[n]\\
+		\end{align*}
+	\subsection{LTI Systeme}
+		\textit{Ein LTI System ist mathematisch als ein Operator T(\{$\bullet$\})
+definiert die bzw. der eine Eingangsfolge mit den Werten $x[n]$
+in eine Ausfangsfolge $y[n]$ abbildet}\\\\
+		\textbf{LTI-System} $y[n] = T(\{x[m]\} m \in \mathbb{Z}, n) \forall n \in \mathbb{Z}$\\
+		\textbf{Verk\"urzte Notation} $y[n] = T\{x[n]\}$\\
+		\textbf{Eigenschaften LTI-Systeme}
+		\begin{itemize}
+			\item{\textbf{Ged\"achtnislos} $y[n] = T(x[n]) \forall n \in \mathbb{Z}$}
+			\item{\textbf{Linear} $y_1[n], y_2[n]$ Systemantworten zu $x_1[n], x_2[n]$ dann ist $T(\{\bullet\})$ linear wenn gilt: \\
+				$\bullet\quad T(\{x_1[m] + x_2[m]\}, n) \\= T(\{x_1[m]\}, n) + T(\{x_2[m]\}, n) = y_1[n] + y_2[n]$ (Addition)\\
+				$\bullet\quad T(\{ax[m]\},n) = a T(\{x[m]\}, n) = ay[n]$ (Skalierung)\\
+				$\bullet\quad T(\{ax_1[m] + bx_2[m]\}, n) = \\aT(\{x_1[m]\}, n) + bT(\{x_2[m]\}, n) = ay_1[n] + by_2[n]$ \\(Addition + Skalierung)}
+			\item{\textbf{Zeitinvariant} $x_1[n] = x[n - n_0], T(\{x_1[m]\},n) = y_1[n] = y[n - n_0]$}
+			\item{\textbf{Kausal} $y[n]$ darf nur von Werte im Indexbereich $\leq n$ abh\"angen}
+			\item{\textbf{Stabil} Ein/Ausgangswerte \text{ sin }d beschr\"ankt. $tldr; $ Es gibt kein $\infty$ Zeichen.}
+		\end{itemize}
+		\begin{tabular}{ r l l }
+			\textbf{Einheitsimpuls } & $\delta[n]$ & $=
+			\begin{dcases*}
+				1 & $n = 0$ \\
+				0 & $n \neq 0$
+			\end{dcases*}$\\
+			\textbf{Impulsantwort } & $h[n]$ & $= T(\{\delta[m]\}, n)$\\
+			& $y[n]$ & $= T( \{ \sum\limits_{k = -\infty}^{\infty} x[k]\delta[m - k]\} m\in\mathbb{Z}, n )$\\
+			\text{Es gilt } & $h[n-k]$ & = $T(\{\delta[m-k]\} m \in \mathbb{Z}, n)$ \\
+			\textbf{\"Uberlagerung } & $y[n]$ & $= \sum\limits_{k = -\infty}^{\infty} x[k] T(\{\delta[m-k]\}, n)$\\
+			 & & $= \sum\limits_{k = -\infty}^{\infty} x[k]h[n-k]$\\
+			\textbf{Faltungssumme } & $y[n]$ & $= \sum\limits_{k = -\infty}^{\infty} x[k]h[n-k]$\\
+			& $y[n]$ & $= x[n] * h[n]$\\
+		\end{tabular}
+		\subsection{Frequenzantwort von LTI-Systemen}
+			\begin{tabular}{ r p{0.35cm} l }
+				\textbf{Eingangsfolge } & $x[n]$ & $ = e^{j\omega n } \quad \forall n$\\
+				\textbf{Ausgangsfolge } & $y[n]$ & $ = \sum\limits_{k = -\infty}^{\infty} h[k] e^{j\omega (n-k)}$\\
+				& & $= \sum\limits_{k = -\infty}^{\infty}h[k]e^{j\omega n}e^{-j\omega k}$\\
+				& & $= e^{j \omega n} ( \sum\limits_{k = -\infty}^{\infty} h[k] e^{-j\omega k})$\\
+				& & $= H(e^{j\omega}) e^{j\omega n}$\\
+				\textit{(Frequenzantwort)} & & $= H(e^{j \omega})$
+			\end{tabular}
+	\subsection{Fourier Transformation}
+		\begin{tabular}{p{0.5cm}p{4.5cm}p{8.5cm}}
+			\hline
+			& Folge $x[n]$ & Fourier Transformation $X(e^{j\omega})$\\
+			\hline
+			$1.$ & $\delta[n]$ & $1$\\
+			$2.$ & $\delta[n - n_0]$ & $e^{-j\omega n_0}$\\
+			$3.$ & $1\quad (-\infty < n < \infty)$ & $\sum\limits_{k = -\infty}^{\infty} 2 \pi \delta(\omega + 2 \pi k)$\\
+			$4.$ & $a^n[n]\quad (|a| < 1)$ & $\frac{1}{1 - ae^{-j\omega}}$\\
+			$6.$ & $(n+1)a^n u[n]\quad (|a| < 1)$ & $\frac{1}{(1-ae^{j\omega})^2}$\\
+			$5.$ & $u[n]$ & $\frac{1}{1-e^{-j\omega}} + \sum\limits_{k = -\infty}^{\infty} \pi \delta (\omega + 2\pi k)$\\
+			$7.$ & $\frac{r^n\ \text{ sin }\ \omega_p(n+1)}{\text{ sin }\ \omega_p} u[n]\ (|r| < 1)$ & $\frac{1}{1-2r\ \text{ cos }\ \omega_pe^{-j\omega} + r^2e^{-j2\omega}}$\\
+			$8.$ & $\frac{\text{ sin }\ \omega_cn}{\pi n}$ & $X(e^{j\omega}) = 
+				\begin{dcases*}
+					1 & $|\omega| < \omega_c$ \\
+					0 & $\omega_c$ < $|\omega| \leq \pi$
+				\end{dcases*}$\\
+			$9.$ & $x[n] = 
+				\begin{dcases*}
+					1 & $0 \leq n \leq M$ \\
+					0 & $\text{sonst}$
+				\end{dcases*}$ & $\frac{\text{ sin }[\omega(M + 1)/2]}{\text{ sin }(\omega/2)}e^{-j\omega M/2}$\\
+			$10.$ & $e^{j\omega_0n}$ & $\sum\limits_{k = -\infty}^{\infty} 2 \pi \delta (\omega - \omega_0 + 2 \pi k)$\\
+			$11.$ & $\text{ cos }(\omega_0n+\phi)$ & $\sum\limits_{k = -\infty}^{\infty} [\pi e^{j\phi}\delta(\omega - \omega_0 + 2 \pi k) + \pi e^{-j\phi}\delta(\omega + \omega_0 + 2\pi k)]$\\\\
+		\end{tabular}
+
+		\section{Bildverarbeitung}
+			\subsection{Projecktion}
+				$f := \text{berechnet der Brennweite}$\\
+				$\underbrace{\begin{tabular}{p{3cm} p{3.5cm} p{3.3cm} p{3cm}}
+					\textbf{Zentralprojektion } & $
+						\begin{bmatrix}
+							f & 0 & 0 & 0 \\
+							0 & f & 0 & 0 \\
+							0 & 0 & 1 & 0 \\
+						\end{bmatrix}$ & 
+					\textbf{ Parallelprojektion } & {$
+						\begin{bmatrix}
+							1 & 0 & 0 & 0 \\
+							0 & 1 & 0 & 0 \\
+							0 & 0 & 0 & 1 \\
+						\end{bmatrix}
+					$}\\\\
+					& $(x, y, z)^T \rightarrow (f \frac{x}{z}, f \frac{y}{z})^T$ & & $(x, y, z)^T \rightarrow (x, y)^T$\\\\
+				\end{tabular}}_{\text{Abbildungen von 3D auf 2D}}$\\
+				\begin{align*}
+					\text{3D-Punkt x = } [x, y, z]^T \text{ in homogenen Koordinaten } & \text{x } = [xw, yw, zw, w]^T\\
+					\text{inhomogene/Euklidische Koordinaten } & \text{x } = [\frac{x}{w}, \frac{y}{w}, \frac{z}{w}]\\
+					\text{2D-Punkt x = } [x, y]^T \text{ in homogenen Koordinaten } & \text{x } = [xw, yw, w]^T\\
+					\text{inhomogene/Euklidische Koordinaten } & \text{x } = [\frac{x}{w}, \frac{y}{w}]\\
+				\end{align*}
+			\subsection{Distanzma\ss e}
+				\begin{tabular}{p{3.5cm} p{1.5cm} p{3cm}}
+					\textbf{Euklidische Distanz } 	& $L_2(x, y)$ 		& = $\sqrt{\sum\limits_{i = 1}^{n} (x_i - y_i)^2}$\\
+					\textbf{Blockdistanz } 			& $L_1(x, y)$ 		& = $\sum\limits_{i = 1}^{n} |x_i - y_i|$ \\
+					\textbf{Schachbrettdistanz } 	& $L_\infty(x, y)$ 	& = $\max\limits^{}_{1 \leq i \leq n} \big( |x_i - y_i|\big)$ \\
+				\end{tabular}
+\end{document}

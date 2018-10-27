@@ -1,0 +1,18 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage[a4paper, total={7.5in, 10.5in}]{geometry}
+
+\title{Informatik 3 - Zusammenfassung}
+
+\begin{document}
+	\section*{Gr\"o\ss enordnungen}
+		\begin{align*}
+			\textbf{$g \in \mathcal{O}(f)$ } & \text{}
+			\textbf{Asymptotisch kleiner/gleich } & f \leq g \xLeftrightarrow{def} \exists x \in M: \forall y \geq x: f(y) \leq g(y)\\
+			\textbf{Asymptotisch gleich } & f ~ g \Leftrightarrow \exists x \in M: \forall y \geq x: f(y) = g(y)\\
+			\textbf{$\mathcal{O}(g)$ } & =_{df} \{f: M \rightarrow M | \exists c, d \in M: f \leq c \cdot g + d\}\\
+			\textbf{$\mathcal{O}(1)$ } & = \{f | \exists c, d: f \leq c \cdot 1 + d \} = \{f | \exists e: f \leq e\}\\
+			\textbf{$f = \Omega(g)$ } & \exists c > 0 \forall \epsilon > 0 \exists x \in \{x: d(x,a\}\\
+		\end{align*}
+\end{document}

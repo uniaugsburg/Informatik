@@ -1,0 +1,259 @@
+\documentclass{article}
+
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage[a4paper, total={7.5in, 10.5in}]{geometry}
+\usepackage{algorithm2e}
+
+\title{Mathematik f\"ur Informatiker - Zusammenfassung}
+
+\begin{document}
+	\section*{Grundlagen \"uber Zahlen}
+		\begin{align*}
+			\mathbb{N} := &\ \{0, 1, 2, \ldots\} & \text{ Menge der Nat\"urlichen Zahlen}\\
+			\mathbb{N}^* := &\ \{1, 2, 3, \ldots\} & \text{ Menge der Nat\"urlichen Zahlen ohne Null}\\
+			G := &\ \{0, 2, 4, \ldots\} \equiv \{x\ |\ \exists\ m \in \mathbb{N}: x = 2\cdot m\} & \text{ Menge der Geraden Nat\"urliche Zahlen}\\
+			U := &\ \{1, 3, 5, \ldots\} \equiv \{x\ |\ \exists\ m \in \mathbb{N}: x = 2\cdot m + 1\} & \text{ Menge der Ungeraden Nat\"urliche Zahlen}\\
+			\mathbb{Z} := &\ \{\ldots, -3, -2, -1, 0, 1, 2, 3, \ldots\} & \text{ Menge der Ganzen Zahlen}\\
+			\mathbb{Q} := &\ \{\frac{z}{n}\ |\ z, n \in \mathbb{Z} \wedge n \neq 0\} & \text{ Menge der Rationalen Zahlen}\\
+			\mathbb{R} := &\ \{x\ |\ x \text{ ist eine Zahl}\} & \text{ Menge der Reellen Zahlen}\\
+			\mathbb{C} := &\ \{x + yi\ |\ x, y \in \mathbb{R} \} & \text{ Menge der Komplexen Zahlen}\\
+		\end{align*}
+	\section*{Formeln}
+		\begin{align*}
+			\textbf{B-adische Darstellung } & a \in \mathbb{N}^*, a = \sum\limits_{k=0}^{l} \alpha_kB^k, \text{ so ist } (\alpha_l, \alpha_{l-1}, \ldots, \alpha_0) \text{ die B-adische}\\
+			& \text{Darstellung von } a \text{ mit } \textbf{Stellwertsystem} \text{ zur Basis } B\\
+			\textbf{Fakult\"atsfunktion } & n! \equiv n \cdot n-1 \cdot \ldots, \cdot 1\\
+			\textbf{Fibonacci } & F_0 := 0,\ F_1 := 1,\ F_n := F_{n-1} + F_{n-2} \text{ f\"ur } n \geq 2\\
+			\textbf{Geometrische Summenformel } & \sum\limits_{j=0}^{n} r^{\ j} = \frac{r^{\ n+1}-1}{r-1}
+		\end{align*}
+	\section*{Algorithmen}
+			\begin{algorithm}[H]
+				\SetAlgoLined
+				\KwData{$a \in \mathbb{N}^*$}
+				\KwResult{[$\alpha_k, \ldots, \alpha_0$]}
+				$k \leftarrow 0$,\\
+				$x \leftarrow a \texttt{ div } B$,\\
+				$\alpha_0 \leftarrow a \texttt{ mod } B,$\\
+				$L \leftarrow [\alpha_0],$\\
+				\While{$x \neq 0$}{
+					$k \leftarrow k + 1,$\\
+					$y \leftarrow x \texttt{ div } B,$\\
+					$\alpha_k := x \texttt{ mod } B,$\\
+					$x \leftarrow y,$\\
+					\texttt{// f\"uge $\alpha_k$ an den Anfang der Liste $L$ hinzu,}\\
+					$L = [\alpha_k, \ldots, \alpha_0],$
+				}
+				\caption{B-adische Darstellung}
+			\end{algorithm}
+			\begin{algorithm}[H]
+				\SetAlgoLined
+				\KwData{$a, b \in \mathbb{Z}$}
+				\KwResult{$d = \text{ggT(a, b)}$}
+				$s \leftarrow |a|$,\\
+				$t \leftarrow |b|$,\\
+				\While{$t \neq 0$}{
+					$r \leftarrow s \texttt{ mod } t,$\\
+					$s \leftarrow t,$\\
+					$t \leftarrow r,$\\
+				}
+				$d := s$
+				\caption{Euklidischer Algorithmus}
+			\end{algorithm}
+			\begin{algorithm}[H]
+				\SetAlgoLined
+				\KwData{$a, b \in \mathbb{Z}$}
+				\KwResult{$d = \text{ggT(a, b)}$ und $x, y \in \mathbb{Z}$ mit $xa + yb = d$}
+				$s \leftarrow |a|$,\\
+				$t \leftarrow |b|$,\\
+				$x \leftarrow 1, y \leftarrow 0, u \leftarrow 0, v \leftarrow 1,$\\
+				\While{$t \neq 0$}{
+					$q \leftarrow s \texttt{ div } t,$\\
+					$r \leftarrow s \texttt{ mod } t,$\\
+					$s \leftarrow t, t \leftarrow r,$\\
+					$x \leftarrow u_{alt},$\\
+					$y \leftarrow v_{alt},$\\
+					$u \leftarrow x_{alt} - q \cdot u_{alt},$\\
+					$v \leftarrow y_{alt} - q \cdot v_{alt},$\\
+				}
+				$d \leftarrow s,$\\
+				$x \leftarrow \text{sgn}(a) \cdot x,$\\
+				$y \leftarrow \text{sgn}(b) \cdot y,$\\
+				\caption{Erweiterter Euklidischer Algorithmus}
+			\end{algorithm}
+	\subsection*{Mengen und Abbildungen}
+		\subsubsection*{Abbildungen}
+			\begin{align*}
+				\textbf{Funktion } & \text{Eine Abbildung } f \text{ von } M \text{ nach } N & M \text{ hei\ss t Definitionsbereich}\\
+				& \text{ordnet jedes } x \in M \text{ \underline{eine} } y \in N \text{ zu} & f: M \rightarrow N, x \mapsto y\\
+				\textbf{Bild } & Bild(f) := \{y\ |\ \exists\ x \in M: f(x) = y \} & \text{ Wertebereich}\\
+				\textbf{Urbild } & Urbild(f) := \{x\ |\ \exists\ y \in N: f^{-1}(y) = x\} \subseteq M\\
+				\textbf{Injektivit\"at } & \forall\ x, x' \in M: f(x) = f(x') \Rightarrow x = x'& \\
+				\textbf{Surjektivit\"at } & \forall\ y \in N: \exists\ x \in M: f(x) = y& \\
+				\textbf{Bijektivit\"at } & \forall\ x \in M: \exists\ y \in N: f(x) = y \wedge f^{-1}(y) = x& f \text{ ist Injektiv und Surjektiv}\\
+				\textbf{Umkehrfunktion } & \text{Sei } f: M \rightarrow N, x \mapsto y \text{ eine bijektive Funktion }\\
+				& f^{-1}: N \rightarrow M, y \mapsto x \text{ ist die Umkehrfunktion }\\
+				\textbf{Komposition } & \text{Seien } f, g \text{ Funktionen mit } f: M \rightarrow N \text{ und }\\
+			\end{align*}
+			\begin{align*}
+				& g: N \rightarrow O, \text{ dann ist } f \circ g: M \rightarrow O\\
+				& f, g \text{ injektiv } \Rightarrow f \circ g \text{ injektiv}\\
+				& f, g \text{ surjektiv } \Rightarrow f \circ g \text{ surjektiv}\\
+				& f, g \text{ bijektiv } \Rightarrow f \circ g \text{ bijektiv} & (g \circ f)^{-1} = f^{-1} \circ g^{-1}\\
+				\textbf{Abb($M, N$) } & \{f\ |\ f: M \rightarrow N\}\\
+				\textbf{Symm($M, N$) } & \{f\ |\ f \in \text{Abb}(M, N), f \text{ ist bijektiv}\}\\
+				\textbf{Identit\"atsabbildung } & id_M: M\rightarrow M, x \mapsto x
+			\end{align*}
+		\subsubsection*{Mengen}
+				Seien $M \text{ und } N$ zwei endliche, nicht-leere Mengen mit $m = |M|, n = |N|, \psi: M \rightarrow N$\\
+				\begin{align*}
+					\textbf{Teilmenge } & N \subseteq M \equiv \forall\ n \in N: n \in M\\
+					\textbf{M\"achtigkeit } & l = |M|, M \text{ hat } l \text{ Elemente}\\
+					\textbf{n-Menge } & M = [n] \text{ und } M = \{m_1, m_2, \ldots, m_k\}, \forall\ m_i \in M: i \in [n]\\
+					\textbf{Bin\"are Folgen } & \text{Abb}(\mathbb{N}^*, \{0, 1\})\\
+					\textbf{Char. bin\"are Folge } & \mathcal{X}_U: \mathbb{N}^* \rightarrow \{0, 1\}, n \mapsto \begin{cases*}1, & \text{falls } $n \in U$\\0, & \text{falls } $n \not\in U$\end{cases*}\\
+					\textbf{Leere Menge } & |M| = 0 \Leftrightarrow M = \emptyset \text{ und f\"ur jede Menge } N \text{ gilt: } \emptyset \subseteq N\\
+					\textbf{Karthesische Produkt } & M \times N := \{(x, y)\ |\ x \in M, y \in N\}\\
+					\textbf{Schubfachprinzip } & m > n \Rightarrow \psi \text{ nicht injektiv}\\
+					& m < n \Rightarrow \psi \text{ nicht surjektiv}\\
+					\textbf{Gleichm\"achtigkeitsregel } & m = n \Rightarrow \psi \text{ ist bijektiv}\\
+					& \text{Es seien } M_1, M_2, \ldots, M_l \text{ endliche Mengen mit } M_i \cap M_j = \emptyset\\
+					\textbf{Summenregel } & \bigcup_{k=1}^{l}M_k \text{ ist eine endliche Menge und } \Bigg|\bigcup_{k=1}^{l}M_k\Bigg| = \sum_{k=1}^{l} |M_k|\\
+					\textbf{Produktregel } & |M \times N| = |M| \cdot |N| \\
+					\textbf{Allg. Produktregel } & |\times_{k=1}^{l}| = \prod_{k=1}^{l}|M_k|\\
+					\textbf{Potenzregel } & \text{Abb}(M, N) \text{ endliche Menge und } |\text{Abb}(M, N)| = |N|^{|M|}\\
+					\textbf{Potenzmenge } & \mathcal{P}(N) := \{U\ |\ U \subseteq N\} \text{ und } |\mathcal{P}(N)| = 2^{|N|}\\
+					& \mathcal{P}_k(N) := \{U\ |\ U \subseteq N \wedge |U| = k\}\\
+					\textbf{Binomialkoeffizienten } & \binom{n}{k} := |\mathcal{P}_k(n)| \text{ die Anzahl $k$-elementigen Teilmengen einer n-Menge}\\\\
+					\textbf{Unendliche Menge } & \exists\ f \in \text{Abb}(\mathbb{N}^*, M): f \text{ injektiv} \Rightarrow M \text{ ist unendlich}\\
+					& \exists\ f \in \text{Abb}(\mathbb{N}^*, M): f \text{ bijektiv} \Rightarrow M \text{ ist abz\"ahlbar unendlich}\\
+			\end{align*}
+			\begin{align*}
+					& \exists\ f \in \text{Abb}(\mathbb{N}^*, M): f \text{ bijektiv} \text{ und} \not\exists\ g \in \text{Abb}(\mathbb{N}^*, M): g \text{ surjektiv}\\& \Rightarrow M \text{ ist \"uberabz\"ahlbar unendlich}\\
+					\textbf{\"U\"U\"Uberabz\"ahlbar}\atop\textbf{ unendlich } & \mathcal{P}({\mathbb{R}})
+				\end{align*}
+		\subsection*{Algebraische Grundstrukturen}
+			\begin{align*}
+				\circ:\ & M\times M \rightarrow M\\
+				& (a, b) \mapsto c\\
+				\textbf{Assoziativit\"at } & \forall\ a,b,c \in M: a \circ (b \circ c)\circ b = (a \circ b) \circ c\\
+				\textbf{Kommutativit\"at } & \forall\ a,b \in M: a \circ b = b \circ a\\
+				\textbf{Distributivit\"at } & \forall\ a, b, c \in M: a \odot (b \oplus c) = a \odot b \oplus a \odot c & \textbf{ DG$_1$}\\
+				& \forall\ a, b, c \in M: (a \oplus b) \odot c = a \odot b \oplus b \odot c & \textbf{ DG$_2$}\\
+				\textbf{Neutrales Element } & \exists\ e \in M: \forall\ a \in M: e \circ a = a = a \circ e\\
+				\textbf{Inverses Element } & \forall\ a \in M: \exists\ a^{-1} \in M: a \circ a^{-1} = e\\
+			\end{align*}
+			\begin{tabular}{l | c | c | c | c }
+				& AG & NE & IE & KG\\
+				\hline
+				\text{Monoid } & $\times$ & $\times$ & & \\
+				\text{Gruppe} & $\times$ & $\times$ & $\times$\\
+				\text{Kommutative Gruppe} & $\times$ & $\times$ & $\times$ & $\times$\\
+			\end{tabular}
+			\begin{align*}
+				\textbf{Einheitengruppe } & E(R) := \{x\ |\ x \in M \wedge \exists y \in M: x \odot y = e\}\\
+				\textbf{(Trivialer) Ring } & (M, \oplus, \odot, n, e) \text{ ist ein Ring falls:} \\
+				& (M, \oplus, n) \text{ ist eine kommutative Gruppe } \\
+				& (M, \oplus, e) \text{ ist ein Monoid}\\
+				& \text{es gelten die Distributivgesetze f\"ur } \odot, \oplus\\
+				\textbf{Nicht-trivialer Ring } & M \text{ ist Ring und } |M| \geq 2\\
+				\textbf{Integrit\"atsbereich } & M \text{ ist ein Ring und } \forall\ a, b \in M: a \odot b = n \Rightarrow a = n \vee b = n\\
+				\textbf{Schiefk\"orper } & \forall\ a \in M: a \neq 0: \exists\ a' \in M: a \odot a' = e\\
+				\textbf{K\"orper } & M \text{ ist ein K\"orper falls } M \text{ ein kommutativer Schiefk\"orper ist}\\
+			\end{align*}
+		\subsection*{Relationen}
+			Sei $R$ eine Relation auf $M$ ($R \subseteq M \times M$)\\
+			\begin{align*}
+				\textbf{Eigenschaften } & \\
+				\textbf{Reflexivit\"at } & \forall\ x \in M: (x, x) \in R\\
+				\textbf{Symmetrie } & \forall\ (x, y) \in R: (y, x) \in R\\
+				\textbf{Transitivit\"at } & \forall\ (a, b), (b, c) \in R: (a, c) \in R\\\hline
+				\textbf{\"Aquivalenzrelation } & R \text{ ist eine \"Aquivalenzrelation } \Leftrightarrow R \text{ ist reflexiv, symmetrisch und transitiv}\\
+				\textbf{\"Aquivalenzklasse } & [a]_R := \{x\ |\ x \in M \wedge (a, x) \in R\}\\
+				& M/R := \{x\ |\ [x]_R\} \text{ die Menge aller \"Aquivalenzklassen von R}\\
+				\textbf{Repr\"asentant } & x \in [a]_R\\
+				\textbf{Repr\"asentantensystem } & \{x\ |\ x \text{ ist ein Repr\"asentant}\}\\
+			\end{align*}
+		\subsection*{Restklassenring/K\"orper}
+			\begin{align*}
+				\textbf{Addition } & [x]_n + [y]_n := [x + y]_n\\
+				\textbf{Multiplikation } & [x]_n \cdot [y]_n := [x \cdot y]_n\\
+				\textbf{Additiv Inverse } & [x]_n + [n-x]_n = [x + (n - x)]_n = [n]_n = [0]_n\\
+				\textbf{Multiplikativ Inverse } & [x]_n \cdot [x']_n = [1]_n\\
+				\textbf{Kongruent } & x \equiv_n y \Leftrightarrow x \text{ mod } n = y \text{ mod } n\\
+			\end{align*}
+		\subsection*{Vektorr\"aume, Matrizen und Polynome}
+			\subsubsection*{Defintion Vektorraums}
+				Sei $(V, \oplus, 0_V) \text{ eine komm. Gruppe und } (\mathbb{K}, +, \cdot, 0, 1) \text{ ein K\"orper}$ mit $*: \mathbb{K} \times V \rightarrow V\atop (\lambda,v) \rightarrow \lambda * v$\\
+				\begin{align*}
+					\textbf{$\mathbb{K}$-Vektorraum } & (V, \oplus, 0_V, *)\\
+					\textbf{Vektoren } & v \in V, v = (v_1, \ldots, v_n)\\
+					\textbf{Linearkombination } & lin(v_1, \ldots, v_k) = \sum_{i=1}^{k}\lambda_i v_i & \lambda_i,\ldots,\lambda_k \in \mathbb{K}, v_1, \ldots, v_k \in V\\
+					\textbf{Matrix } & A = \begin{pmatrix}A_{11} & A_{12} & \ldots & A_{1n}\\A_{21} & A_{22} & \ldots & A_{2n}\\ \vdots & \vdots & \ddots & \vdots\\ A_{m1} & A_{m2} & \hdots & A_{mn}\end{pmatrix} \in \mathbb{K}^{m,n} & A = (A_{ij})_{i = 1,\ldots,m,\atop j = 1,\ldots,n}\\
+					\textbf{Einheitsmatrix } & E = (E_{ij}), E_{ij} = \begin{cases}1 & \text{ falls } i = j\\0 & \text{ sonst}\end{cases} & \text{ Auch kanonische Basis}\\
+					\textbf{Inverse Matrix } & AA^{-1} = E = A^{-1}A & \text{ $A$ ist invertierbar}\\
+					\textbf{Matrixaddition } & A + B = (A_{ij} + B_{ij})_{i = 1,\ldots,m,\atop j = 1,\ldots,n}\\
+					\textbf{Skalarmultiplikation } & \lambda * A = (\lambda * A_{ij})_{i = 1,\ldots,m,\atop j = 1,\ldots,n}\\
+					\textbf{Matrixmultiplikation } & AB = C, C_{ij} = \sum_{i=1}^{m} A_{im} \cdot B_{mj} & A \in \mathbb{K}^{l,\textbf{m}}, B \in \mathbb{K}^{\textbf{m},n} \Rightarrow C \in \mathbb{K}^{l,n}\\
+					\textbf{Transposition } & A^T = (A_{ji})_{i = 1,\ldots,m,\atop j = 1,\ldots,n} & A \in \mathbb{K}^{m,n} \Rightarrow A^T \in \mathbb{K}^{n,m}\\
+				\end{align*}
+			\subsubsection*{Polynome}
+				\begin{align*}
+					\textbf{Variablen } & \overset{1}{x^0}, \overset{x}{x^1}, \ldots, x^m\\
+					\textbf{Monom }	& x^j, j = 0,\ldots,m\\
+					\textbf{Polynom } & f(x) = \sum_{i=0}^{k}f_i x^i = f_0 + f_1x + f_2x^2 + \ldots + f_mx^m & f_i \in \mathbb{K}\\
+					\textbf{Grad } & deg(f) = m \text{ falls } f_m \neq 0,  deg(f) + deg(g) = deg(fg)\\
+					\textbf{Leitkoeffizient } & f_m & Lc(f)\\
+					\textbf{Leitmonom } & x^m & Lm(f)\\
+					\textbf{Leitterm } & f_mx^m & Lt(f)\\
+					\textbf{Polynom-division } & \\
+				\end{align*}
+				\begin{algorithm}[H]
+					\SetAlgoLined
+					\KwData{$f(x), g(x), g(x) \neq 0$}
+					\KwResult{$q(x), r(x): f(x) = q(x)g(x) + r(x)$}
+					$q(x) \leftarrow 0$\\
+					$r(x) \leftarrow f(x)$\\
+					\While{$deg(r) > deg(g)$} {
+						$h(x) \leftarrow \frac{Lc(r)}{Lc(g)} \cdot x^{deg(r)-deg(g)} // (h(x) = \frac{Lt(r)}{Lt(f)})$\\
+						$q(x) \leftarrow q(x) + h(x)$\\
+						$s(x) \leftarrow r(x) - h(x)g(x)$\\
+						$r(x) \leftarrow s(x)$\\
+					}
+					\caption{Polynomdivision}
+				\end{algorithm}
+				\begin{algorithm}[H]
+					\SetAlgoLined
+					\KwData{$f(x) = \sum_{i=0}^{k}f_ix^i$}
+					\KwResult{$f(\alpha)$}
+					$\lambda \leftarrow f_k$\\
+					$l \leftarrow 0$
+					\\
+					\While{$l < k$} {
+						$l \leftarrow l + 1$\\
+						$\lambda \leftarrow \lambda \cdot \alpha + f_{k-l}$
+					}
+					\caption{Hornerschema}
+				\end{algorithm}
+		\subsection*{Lineares Gleichungssysteme}
+			\begin{align*}
+				\textbf{Gleichungssystem } & 
+					\begin{matrix}
+						A_{11}x_1 & + & A_{12}x_2 & + & \ldots & + & A_{1n}x_n & = & b_1\\
+						A_{21}x_1 & + & A_{22}x_2 & + & \ldots & + & A_{2n}x_n & = & b_2\\ 
+						\vdots & & \vdots & & \ddots & & \vdots && \vdots\\
+						A_{m1}x_1 & + & A_{m2}x_2 & + & \ldots & + & A_{mn}x_n & = & b_m
+					\end{matrix}\\
+				\textbf{Zeile mit Index i } & A_{i1}x_1 + A_{i2}x_2 + \ldots + A_{in}x_n = b_i\\
+				\textbf{Elementaroperation I } & \underbrace{A_{i1}x_i + A_{i2}x_2 + \ldots + A_{in}x_n = b_i}_{\cdot \lambda \in \mathbb{K}, \lambda \neq 0}\\
+				& \lambda \cdot (A_{i1}x_i + A_{i2}x_2 + \ldots + A_{in}x_n = b_i)\\
+				\textbf{II } & \underbrace{A_{i1}x_i + A_{i2}x_2 + \ldots + A_{in}x_n = b_i}_{ + \text{ zeile } j (\cdot \lambda, \lambda \in \mathbb{K})}\\
+				& (\lambda \cdot) (A_{i1}x_i +  + A_{i2}x_2 + \ldots + A_{in}x_n + A_{jn}x_n = b_i + b_j\lambda)\\
+				\textbf{III } & \\
+				\textbf{L\"osungsmenge } & \mathbb{L}_{A, b} := \{v\ |\ v \in \mathbb{K}^n: Av = b\}\\
+				\textbf{Homogene L\"osungsraum } & \mathbb{L}_{A, 0} := \{v\ |\ v \in \mathbb{K}^n: Av = 0\}\\
+				\textbf{Eigenvektor } & v \in \mathbb{K}^n: v \neq 0_{\mathbb{K}^n} \text{ falls } \exists \lambda \in \mathbb{K}: Av = \lambda v (\Leftrightarrow Av - \lambda E v = 0)\\
+				\textbf{Eigenwert } & \text{Der } \lambda \text{ von hier oben}\\
+				\textbf{Eigenraum } & E_\lambda(A) := \{v\ |\ v \in \mathbb{K}^n: Av = \lambda v\} \text{ ($\lambda$ EW von A)}
+			\end{align*}
+\end{document}

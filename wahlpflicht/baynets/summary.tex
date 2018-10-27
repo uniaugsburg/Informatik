@@ -1,0 +1,73 @@
+\documentclass{article}
+
+\usepackage[a4paper, total={7.5in, 10.5in}]{geometry}
+\usepackage{amsmath}
+
+\title{Bayesian Networks - Zusammenfassung}
+
+\newcommand{\prob}{\textit{P}}
+\DeclareRobustCommand*{\tautequiv}{%
+  \Relbar\joinrel\mathrel{|}
+  \mathrel{|}\joinrel\Relbar%
+}
+
+\begin{document}
+	\section*{Introduktion}
+		\begin{align*}
+			\textbf{Sample space } & \Omega = \{e_1, \ldots, e_n\}\\
+			\textbf{Event } & E \subseteq \Omega\\
+			\textbf{Probability function } & \prob(E) = x & 0 \leq x \leq 1\\
+			& \forall E: |E| = i > 1: P(E) = \sum_{i}^{n}\prob(\{e_i\}), e_i \in E\\
+			\textbf{Probability space } & (\Omega, \prob)\\
+			\textbf{Bayes Theorem } & \prob(S|T) = \frac{\prob(T|S)\prob(S)}{\prob(T)}\\
+			\textbf{Total Probability } & \frac{\prob (B | A) \prob (A)}{\sum\limits_{r}^{} \prob (B|r)}\\
+			\textbf{Conditional Probability } & \frac{\prob (B | A) \prob (A)}{\sum\limits_{r}^{} \prob (B|r) \prob(r)}\\
+			\textbf{Axiom 1 } & \prob(\Omega) = 1\\
+			\textbf{Axiom 2 } & 0 \leq \prob(E) \leq 1, \forall E \subseteq \Omega\\
+			\textbf{Axiom 3 } & E,F \subseteq \Omega: E \cap F = \emptyset \Rightarrow \prob(E \cup F) = \prob(E) + \prob(F)\\
+			& \text{In general } \prob(E \cup F) = \prob(E) + \prob(F) - \prob(E \cap F)\ \ \ (\prob(\emptyset) = 0)\\
+			\textbf{Conditional Probability } & \prob(E|F) = \frac{\prob(E\cap F)}{\prob(F)}\text{Probability of E occurring when F occurred} & \\
+			% \textbf{Independency } & E, F \subseteq \Omega \text{ are independent if one of the following holds }\\
+			% & 1. \prob(E|F) = P(E) \wedge \prob(E) \neq 0 \neq \prob(F)\\
+			% & 2. \prob(E) = 0 \text{ or } \prob(F) = 0\\
+			% \textbf{Conditionally independent } & E,F \subseteq \Omega \text{ are conditionally independent given } G \in \Omega\ if\ \prob(G) \neq 0 \text{ and one of the following holds} \\
+			% & 1. \prob(E|F \cap G) = \prob(E|G) \wedge \prob(E|G) \neq 0 \neq \prob(F|G)\\
+			% & 2. \prob(E|G) = 0 \vee \prob(F|G) = 0\\
+		\end{align*}
+	\section*{Independence}
+		\begin{align*}
+			\textbf{Product Rule } & \prob(x,y) = \prob(x|y)\prob(y)\\
+			\textbf{Chain Rule } & \prob (x_1, x_2) = \prob (x_2 | x_1) \cdot \prob(x_1) = \prob(x_1 | x_2) \cdot \prob (x_2)\\
+			\textbf{Independence } & I_p(A,B) \Leftrightarrow \prob (a|b) = \prob(a) \vee \Big(\prob(a) = 0 \vee \prob(b) = 0\Big)\\
+			\textbf{Conditional Independence } & I_p(A,B|C) \Leftrightarrow \prob(a|b,c) = \prob(a|b)\\
+			\textbf{Symmetry } & I_p(X,Y|Z) \Rightarrow I_p(Y,X|Z)\\
+			\textbf{Decomposition } & I_p(X, \{Y, W\}|Z) \Rightarrow I_p(X,Y|Z)\\
+			\textbf{Weak Union } & I_p(X, \{Y, W\}|Z) \Rightarrow I_p(X, Y|\{Z, W \})& \\
+			\textbf{Contraction } & I_p(X, W |Z, Y) \textbf{ und } I_p(X, Y|Z) \Rightarrow I_p(X, \{Y, W \}|Z)\\
+			\textbf{Intersection } & I_p(X, Y|\{Z, W\}) \textbf{ und } I_p(X, W |Z, Y) \Rightarrow I_p(X, \{Y, W \}|Z)\\
+			& \textit{For positive distributions and for mutually disjoint sets X, Y, Z, W}
+		\end{align*}
+	\section*{Markov}
+		\begin{align*}
+			\textbf{DAG } & G = (V,E)\\
+			\textbf{Nodes } & V := \{A, B, C, ...\}\\
+			\textbf{Edge } & A \rightarrow B := (A,B) \in E \wedge (B,A) \not\in E\\
+			\textbf{Parent node } & PA_X := \text{nodes with a direct path to }X \\
+			\textbf{Non-Descendants } & ND_X := \text{nodes that have no path from }X\\
+			\textbf{Markov Condition } & I_p(X, ND_X | PA_X)\\
+			\textbf{G satisfies MC } & \forall X \in V: I_p(X, ND_X | PA_X)\\
+			\textbf{Chain } & \rho = [X,..., Y] := X - ... - Y\qquad X,...,Y \in A \subseteq V\\
+			\textbf{Directed Chain } & X (\leftarrow \vee \rightarrow) ...(\leftarrow \vee \rightarrow) Y\\
+			\textbf{Blockade by $A$ } & \exists Z \in A: \leftarrow Z \leftarrow \\
+			& \exists Z \in A: \leftarrow Z \rightarrow\\
+			& \exists Z \in A: \forall z \in desc_Z: z \not\in A \wedge z \not\in \rho\ \wedge \rightarrow Z \leftarrow\\
+			\textbf{d-Separation } & I_G(X,Y|A) := \text{every chain between $X$ and $Y$ is blocked by $A$}\\
+			\textbf{Active Chain } & \rho \text{ is not blocked by $A$ given $A$}\\
+		\end{align*}
+	\section*{Subjective / Bayesian Probabilities}
+		\begin{align*}
+			\textbf{Prior Probability } & \text{probability of some event prior to updating its probability using new information.}\\
+			\textbf{Posteriori Probability } & \text{probability of some event after updating its probability based on new information.}\\
+			\textbf{Join Prob. Distribution } & \text{}\\
+		\end{align*}
+\end{document}
