@@ -8,11 +8,14 @@
 \begin{document}
 	\section*{Gr\"o\ss enordnungen}
 		\begin{align*}
-			\textbf{$g \in \mathcal{O}(f)$ } & \text{}
-			\textbf{Asymptotisch kleiner/gleich } & f \leq g \xLeftrightarrow{def} \exists x \in M: \forall y \geq x: f(y) \leq g(y)\\
-			\textbf{Asymptotisch gleich } & f ~ g \Leftrightarrow \exists x \in M: \forall y \geq x: f(y) = g(y)\\
-			\textbf{$\mathcal{O}(g)$ } & =_{df} \{f: M \rightarrow M | \exists c, d \in M: f \leq c \cdot g + d\}\\
-			\textbf{$\mathcal{O}(1)$ } & = \{f | \exists c, d: f \leq c \cdot 1 + d \} = \{f | \exists e: f \leq e\}\\
-			\textbf{$f = \Omega(g)$ } & \exists c > 0 \forall \epsilon > 0 \exists x \in \{x: d(x,a\}\\
+			\textbf{$\omega(n)$: } f \in \omega (g) & \xLeftrightarrow{def} g \in o(f) & \textbf{Konstant } & \Theta(1) & \\
+			\textbf{$\Omega(n)$: } f \in \Omega (g) & \xLeftrightarrow{def} g \in \mathcal{O}(f) & \textbf{Logarithmisch } & \Theta(\log n)\\
+			\textbf{$\Theta (n)$: } f \in \Theta (g) & \xLeftrightarrow{def} f \in \mathcal{O}(g) \wedge f \in \Omega (g) & \textbf{Quasilinear } & \Theta(n)\\
+			& \xLeftrightarrow{\ \ \ \ } f \in \mathcal{O}(g) \wedge g \in \mathcal{O}(f) & \textbf{Linear } & \Theta(n)\\
+			& \xLeftrightarrow{\ \ \ \ } \mathcal{O}(f) = \mathcal{O}(g) & \textbf{Quadratisch } & \Theta(n^2)\\
+			\textbf{$\mathcal{O}(n)$:}\hspace{1.45cm} & \xLeftrightarrow{def} \{f: M \rightarrow M | \exists c,d \in M: f \leq c \cdot n + d\} & \textbf{Kubisch } & \Theta(n^3)\\
+			\textbf{$o(n)$: } f \in o(g) & \xLeftrightarrow{def} f \in \mathcal{O}(g) \wedge f \not\in \Omega (g) & \textbf{Polynomiell } & \cup_{k \in \mathbb{N}} \Theta(n^k)\\
+			& \xLeftrightarrow{\ \ \ \ } \mathcal{O}(f) \subset \mathcal{O} (g) & \textbf{Exponentiell } & \cup_{k \in \mathbb{N}} \Theta(k^n)\\
+			& & \textbf{Faktoriell } & \Theta (n!)\\
 		\end{align*}
 \end{document}
