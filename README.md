@@ -23,7 +23,7 @@ Mathematik für Informatiker 1 | [pdf](https://github.com/uniaugsburg/Informatik
 Modul | PDF | Bemerkungen
 ----- | --- | -----------
 Multimedia Grundlagen 1 | [pdf](https://github.com/uniaugsburg/Informatik/blob/master/multimedia-grundlagen/mmg_1/summary.pdf)
-~~Multimedia Grundlagen 2~~ | 
+Multimedia Grundlagen 2 | [pdf](https://github.com/uniaugsburg/Informatik/blob/master/multimedia-grundlagen/mmg_2/summary.pdf) | **Nicht** fertig und **nicht** unter Bearbeitung
 
 ## Wahlpflicht
 Modul | PDF | Bemerkungen
