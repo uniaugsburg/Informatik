@@ -93,6 +93,20 @@
 				\textbf{(A5) } & I, \beta \models \forall x A & :\Leftrightarrow\ & \text{f\"ur alle d $\in$ D gilt I}, \beta^{d}_{x} \models A\\
 				& I, \beta \models \exists xA & :\Leftrightarrow\ & \text{es gibt ein d $\in$ D f\"ur die gilt I}, \beta^{d}_{x} \models A\\
 			\end{align*}
+	\section{Aussagenlogik}
+		\subsection{Pr\"adikatenlogische Formeln}
+			\begin{align*}
+				\textbf{Kommutativit\"at } & A \vee B \tautequiv B \vee A &  \text{ und } & A \wedge B \tautequiv B \wedge A\\
+				\textbf{Assoziativit\"at } & A \vee (B \vee C) \tautequiv (A \vee B) \vee C & \text{ und } & A \wedge (B \wedge C) \tautequiv (A \wedge B) \wedge C\\
+				\textbf{Idempotenz } & A \vee A \tautequiv A & \text{ und } & A \wedge A \tautequiv A\\
+				\textbf{Distributivit\"at } & A \vee (B \wedge C) \tautequiv (A \vee B) \wedge (A \vee C)&  \text{ und } & A \wedge (B \vee C) \tautequiv (A \wedge B) \vee (A \wedge C)\\
+				\textbf{de Morgan } & \neg (A \vee B) \tautequiv \neg A \wedge \neg B & \text{ und } & \neg (A \wedge B) \tautequiv \neg A \vee \neg B\\
+				\textbf{Doppelte Negation } & \neg \neg A \tautequiv A\\
+				\textbf{Absorption } & A \vee (A \wedge B) \tautequiv A & \text{ und } & A \wedge (A \vee B) \tautequiv A\\
+				\textbf{Neutrales Elemente } & A \vee false \tautequiv A & \text{ und } & A \wedge true \tautequiv A\\
+				\textbf{Inverse Elemente } & A \vee \neg A \tautequiv true & \text{ und } & A \wedge \neg A \tautequiv false\\
+				\textbf{Null Elemente } & A \vee true \tautequiv true & \text{ und } & A \wedge false \tautequiv false
+			\end{align*}
 	\section{Hilbert Kalk\"ul}
 		\begin{align*}
 			\textbf{(Trivial) } & & & A \rightarrow A &\ A \in For \\
