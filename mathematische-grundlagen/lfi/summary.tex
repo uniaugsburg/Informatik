@@ -111,11 +111,11 @@
 		\begin{align*}
 			\textbf{(Trivial) } & & & A \rightarrow A &\ A \in For \\
 			\textbf{(Ax1) } & & & A \rightarrow (B \rightarrow A) &\ A, B \in For\\
-			\textbf{(Ax2) } & & & (A \rightarrow (B \rightarrow C)) \rightarrow \Big((A \rightarrow B) \rightarrow (A \rightarrow C)\Big) &\ A, B, C \in For\\
+			\textbf{(Ax2) } & & & \big(A \rightarrow (B \rightarrow C)\big) \rightarrow \big((A \rightarrow B) \rightarrow (A \rightarrow C)\big) &\ A, B, C \in For\\
 			\textbf{(Ax3) } & & & (\neg A \rightarrow \neg B ) \rightarrow (B \rightarrow A) &\ A, B \in For\\
 			\textbf{(Ax4) } & & & (\forall x A) \rightarrow (A[^t/_x]) & \text{ SP (Spezialisierung)}\\
 			\textbf{(Ax5) } & & & A \rightarrow \forall x A, \text{ falls } x \not \in FV(A) & \text{ GE (Generalisierung)}\\
-			\textbf{(Ax6) } & & & (\forall x A \rightarrow B) \rightarrow \Big( ( \forall x A ) \rightarrow (\forall x B) \Big) & \text{ DA (Distributivit\"at)}\\
+			\textbf{(Ax6) } & & & (\forall x A \rightarrow B) \rightarrow \big( ( \forall x A ) \rightarrow (\forall x B) \big) & \text{ DA (Distributivit\"at)}\\
 			\textbf{(Ax7) } & & & x = x & \text{ RE (Reflexivit\"at)}\\
 			\textbf{(Ax8) } & & & x = y \rightarrow (A \rightarrow A'), & \text{ GL (Gleichheit)}\\
 			& & & \text{wobei A quantorenfrei ist und A' aus A}\\
@@ -125,15 +125,15 @@
 			\textbf{(2.7) } & \textit{i } & & M \vdash A \wedge M \vdash A \rightarrow B, \text{ dann }  M \vdash B\\
 			& \textit{ii } & & M \vdash \neg A \rightarrow \neg B, \text{ dann }  M \vdash \{A\} \rightarrow B\\
 			\textbf{(2.8) } & & & M \vdash A \rightarrow B \Leftrightarrow M \cup \{A\} \vdash B & \textit{Deduktion}\\
-			\textbf{(2.9) } & \textit{i } & & \vdash (A \rightarrow B) \rightarrow \Big( ( B \rightarrow C ) \rightarrow (A \rightarrow C) \Big) & \textit{transitivit\"at von} \rightarrow\\
+			\textbf{(2.9) } & \textit{i } & & \vdash (A \rightarrow B) \rightarrow \big( ( B \rightarrow C ) \rightarrow (A \rightarrow C) \big) & \textit{transitivit\"at von} \rightarrow\\
 			& \textit{ii } & & \vdash \neg A \rightarrow (A \rightarrow B) & (\neg A \wedge A \rightarrow B) (\textit{ex falso quod libet})\\
 			& \textit{iii } & & \vdash \neg\neg A \rightarrow A\\
 			& \textit{iv } & & \vdash A \rightarrow \neg\neg A\\
 			& \textit{v } & & \vdash (\neg A \rightarrow A) \rightarrow A & \textit{ein Widerspruchsbeweis}\\
+			\textbf{(2.10) } & \textit{i } & & \frac{A \rightarrow B, B \rightarrow C}{A \rightarrow C}\\
+			& \textit{ii } & & \frac{\neg\neg A}{A}\\
 		\end{align*}
 		\begin{align*}
-			\textbf{(2.10)}\textit{i } & \frac{A \rightarrow B, B \rightarrow C}{A \rightarrow C}\\
-			\textit{ii } & \frac{\neg\neg A}{A}\\
 		\end{align*}
 	\section*{Variablen} 
 		\begin{align*}
