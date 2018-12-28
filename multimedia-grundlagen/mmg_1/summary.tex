@@ -7,17 +7,26 @@
 	\section{Grundlegende Mathematik}
 		\subsection{Komplexe Zahlen}
 			\begin{align*}
-				\text{Sei }z \in \mathbb{Z} \text{ }& \\
+				\text{Sei }z \in \mathbb{C} \text{ }& \\
 				\textbf{Karth. Darstellung } 			& z = x + yi \quad x, y \in \mathbb{R} \\
 				\textbf{Polardarstellung } 				& z = r [ \text{ cos }(\varphi) + \text{ sin }(\varphi)i ] = r \cdot e^{i \varphi} \\
 														& r = \sqrt{x^2 + y^2} (= |z|) \\
 														& \varphi = arg(z) = \text{arc}\tan \Big(\frac{x}{y}\Big) = \tan^{-1} \Big(\frac{x}{y}\Big), z \neq 0 \\
 				\textbf{Komplex konjugiert } 			& \overline{z} = z^{*} = x - yi \\
 				\textbf{Karth. $\leftrightarrow$ Polar }& x = r \text{ cos }(\varphi), y = r \text{ sin }(\varphi) \\
-				\textbf{cos($x$) } & = \frac{e^{i x} + e^{-i x}}{2}\\
-				\textbf{sin($x$) } & = \frac{e^{i x} - e^{-i x}}{2i}\\
-				\textbf{$e^{ix}$ } & = \text{cos ($x$) + i sin ($x$)}\\
-				\textbf{Rotationsmatrix } & \begin{bmatrix}\cos \Theta & -\sin \Theta \\ \sin \Theta & \cos \Theta \end{bmatrix}\\
+				\textbf{Eulersche Formel } 				& {{e} ^{{i} \,y}=\cos \left(y\right)+ {i} \,\sin \left(y\right)}\\
+				\text{folglich auch }  						&{{e} ^{z}= {e} ^{x+{i} y}= {e} ^{x}\cdot {e} ^{ {i} y}= {e} ^{x}\cdot \left(\cos \left(y\right)+{i} \,\sin \left(y\right)\right)}\\
+				\textbf{cos($x$) } 						& = \frac{e^{i x} + e^{-i x}}{2}\\
+				\textbf{sin($x$) } 						& = \frac{e^{i x} - e^{-i x}}{2i}\\
+				\textbf{Rotationsmatrix }				& \textbf{$R_x\left(\Theta\right)$ (3x3-Matrix)} = \begin{bmatrix}1 & 0 & 0 \\
+																											0 & \cos \Theta & -\sin \Theta \\
+																											0 & \sin \Theta & \cos \Theta \end{bmatrix}\\
+														& \textbf{$R_y\left(\Theta\right)$ (3x3-Matrix)} = \begin{bmatrix}\cos \Theta & 0 & \sin \Theta \\
+																											0 & 1 & 0 \\
+																											 -\sin \Theta & 0 & \cos \Theta \end{bmatrix}\\
+														& \textbf{$R_z\left(\Theta\right)$ (3x3-Matrix)} = \begin{bmatrix}\cos \Theta & -\sin \Theta & 0 \\
+																											\sin \Theta & \cos \Theta & 0\\
+																											0 & 0 & 1 \end{bmatrix}\\
 			\end{align*}
 		\subsection{Ableitungen}
 			\begin{align*}
