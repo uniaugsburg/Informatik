@@ -11,7 +11,7 @@
 				\textbf{Karth. Darstellung } 			& z = x + yi \quad x, y \in \mathbb{R} \\
 				\textbf{Polardarstellung } 				& z = r [ \text{ cos }(\varphi) + \text{ sin }(\varphi)i ] = r \cdot e^{i \varphi} \\
 														& r = \sqrt{x^2 + y^2} (= |z|) \\
-														& \varphi = arg(z) = \text{arc}\tan \Big(\frac{x}{y}\Big) = \tan^{-1} \Big(\frac{x}{y}\Big), z \neq 0 \\
+														& \varphi = arg(z) = \arctan{} \Big(\frac{x}{y}\Big) = \tan^{-1} \Big(\frac{x}{y}\Big), z \neq 0 \\
 				\textbf{Komplex konjugiert } 			& \overline{z} = z^{*} = x - yi \\
 				\textbf{Karth. $\leftrightarrow$ Polar }& x = r \text{ cos }(\varphi), y = r \text{ sin }(\varphi) \\
 				\textbf{cos($x$) } & = \frac{e^{i x} + e^{-i x}}{2}\\
@@ -30,20 +30,20 @@
 	\section{Signalverarbeitung}
 		\subsection{Digitale Signale}
 		\textit{Ein Signal kann als eine Funktion definiert werden,
-die in irgendeiner Weise Information \"uber den Zustand
+die in irgendeiner Weise Informationen \"uber den Zustand
 oder das Verhalten eines physikalischen Systems enth\"alt.}\\\\
 		AC Signal: $x(t) \qquad t \in \mathbb{R}$\\
 		DC Signal: $x[n] = x(nT)$\\
 		$t = n \cdot T \qquad n \in \mathbb{Z}$\\
 		\begin{align*}
 			\textbf{Abtastperiode } & T := \text{ Zeit zwischen Abtastungen dauert T Zeit}\\
-			\textbf{Abtastfrequenz } & f_s = \frac{1}{T} \text{ Anzahl der Abtastwerte pro Zeit}\\
+			\textbf{Abtastfrequenz } & f_s = \frac{1}{T} \text{ Anzahl der Abtastwerte pro Zeit (Einheit: Hz)}\\
 			\textbf{Frequenz } & f \text{ Anzahl der Schwingungen pro Zeiteinheit}\\
-			\textbf{Normalisierte Frequenz } & f_{norm} = \frac{f}{f_s}\\
+			\textbf{Normalisierte Frequenz } & f_{norm} = \frac{f}{f_s} \text{(Zeitnormalisiert: Zeiteinheitenlos durch Kürzen)}\\
 			\textbf{Normalisierte Darstellung } & x[n]: n \text{ ist einheitenloser Index}\\
 			& \text{T} [\text{ in Sekunden }] \rightarrow 1 [\text{ einheitenlos }]\\
 			\textbf{Bandbreite } & f_B = f_\text{max} - f_\text{min}  \text{ Breite des Signals (ohne Wiederholung)}\\
-			\textbf{Abtasttheorem } & f_s > 2 \cdot f_B \Leftrightarrow f_B < \frac{f_s}{2}. \text{Gilt } f_B \geq \frac{f_s}{2} \text{ so kommt es zu Aliasing}\\
+			\textbf{Abtasttheorem } & f_s > 2 \cdot f_B \Leftrightarrow f_B < \frac{f_s}{2}. \text{ Gilt } f_B \geq \frac{f_s}{2} \text{ so kommt es zu Aliasing}\\
 			\textbf{Periodische Folge } & x[n] = x[n + N], N \in \mathbb{Z}\\
 			\textbf{Quantisierte Signale } & \hat{x}[n] \text{ Kodierung eines Signals nach Bits}\\
 			& \Delta = \frac{2X_m}{2^{B+1}} = \frac{X_m}{2^B} = 2^{-B}X_m, X_m:= max(x[n]),\\
@@ -52,7 +52,7 @@ oder das Verhalten eines physikalischen Systems enth\"alt.}\\\\
 		\end{align*}
 	\subsection{LTI Systeme}
 		\textit{Ein LTI System ist mathematisch als ein Operator T(\{$\bullet$\})
-definiert die bzw. der eine Eingangsfolge mit den Werten $x[n]$
+definiert der eine Eingangsfolge mit den Werten der Folge $x[n]$
 in eine Ausfangsfolge $y[n]$ abbildet}\\\\
 		\textbf{LTI-System} $y[n] = T(\{x[m]\} m \in \mathbb{Z}, n) \forall n \in \mathbb{Z}$\\
 		\textbf{Verk\"urzte Notation} $y[n] = T\{x[n]\}$\\
@@ -64,8 +64,8 @@ in eine Ausfangsfolge $y[n]$ abbildet}\\\\
 				$\bullet\quad T(\{ax[m]\},n) = a T(\{x[m]\}, n) = ay[n]$ (Skalierung)\\
 				$\bullet\quad T(\{ax_1[m] + bx_2[m]\}, n) = \\aT(\{x_1[m]\}, n) + bT(\{x_2[m]\}, n) = ay_1[n] + by_2[n]$ \\(Addition + Skalierung)}
 			\item{\textbf{Zeitinvariant} $x_1[n] = x[n - n_0], T(\{x_1[m]\},n) = y_1[n] = y[n - n_0]$}
-			\item{\textbf{Kausal} $y[n]$ darf nur von Werte im Indexbereich $\leq n$ abh\"angen}
-			\item{\textbf{Stabil} Ein/Ausgangswerte \text{ sin }d beschr\"ankt. $tldr; $ Es gibt kein $\infty$ Zeichen.}
+			\item{\textbf{Kausal} $y[n]$ darf nur von Werten im Indexbereich $\leq n$ abh\"angen}
+			\item{\textbf{Stabil} Ein/Ausgangswerte \text{ sind beschr\"ankt. $tldr; $ Es gibt kein $\infty$ Zeichen.}
 		\end{itemize}
 		\begin{tabular}{ r l l }
 			\textbf{Einheitsimpuls } & $\delta[n]$ & $=
@@ -117,8 +117,8 @@ in eine Ausfangsfolge $y[n]$ abbildet}\\\\
 		\end{tabular}
 
 		\section{Bildverarbeitung}
-			\subsection{Projecktion}
-				$f := \text{berechnet der Brennweite}$\\
+			\subsection{Projektion}
+				$f := \text{berechnet die Brennweite}$\\
 				$\underbrace{\begin{tabular}{p{3cm} p{3.5cm} p{3.3cm} p{3cm}}
 					\textbf{Zentralprojektion } & $
 						\begin{bmatrix}
@@ -137,9 +137,9 @@ in eine Ausfangsfolge $y[n]$ abbildet}\\\\
 				\end{tabular}}_{\text{Abbildungen von 3D auf 2D}}$\\
 				\begin{align*}
 					\text{3D-Punkt x = } [x, y, z]^T \text{ in homogenen Koordinaten } & \text{x } = [xw, yw, zw, w]^T\\
-					\text{inhomogene/Euklidische Koordinaten } & \text{x } = [\frac{x}{w}, \frac{y}{w}, \frac{z}{w}]\\
+					\text{inhomogene/euklidische Koordinaten } & \text{x } = [\frac{x}{w}, \frac{y}{w}, \frac{z}{w}]\\
 					\text{2D-Punkt x = } [x, y]^T \text{ in homogenen Koordinaten } & \text{x } = [xw, yw, w]^T\\
-					\text{inhomogene/Euklidische Koordinaten } & \text{x } = [\frac{x}{w}, \frac{y}{w}]\\
+					\text{inhomogene/euklidische Koordinaten } & \text{x } = [\frac{x}{w}, \frac{y}{w}]\\
 				\end{align*}
 			\subsection{Distanzma\ss e}
 				\begin{tabular}{p{3.5cm} p{1.5cm} p{3cm}}
