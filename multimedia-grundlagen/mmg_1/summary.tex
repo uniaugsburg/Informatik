@@ -39,7 +39,7 @@ oder das Verhalten eines physikalischen Systems enth\"alt.}\\\\
 			\textbf{Abtastperiode } & T := \text{ Zeit zwischen Abtastungen dauert T Zeit}\\
 			\textbf{Abtastfrequenz } & f_s = \frac{1}{T} \text{ Anzahl der Abtastwerte pro Zeit (Einheit: Hz)}\\
 			\textbf{Frequenz } & f \text{ Anzahl der Schwingungen pro Zeiteinheit}\\
-			\textbf{Normalisierte Frequenz } & f_{norm} = \frac{f}{f_s}\\
+			\textbf{Normalisierte Frequenz } & f_{norm} = \frac{f}{f_s} \text{(Zeitnormalisiert: Zeiteinheitenlos durch Kürzen)}\\
 			\textbf{Normalisierte Darstellung } & x[n]: n \text{ ist einheitenloser Index}\\
 			& \text{T} [\text{ in Sekunden }] \rightarrow 1 [\text{ einheitenlos }]\\
 			\textbf{Bandbreite } & f_B = f_\text{max} - f_\text{min}  \text{ Breite des Signals (ohne Wiederholung)}\\
@@ -52,7 +52,7 @@ oder das Verhalten eines physikalischen Systems enth\"alt.}\\\\
 		\end{align*}
 	\subsection{LTI Systeme}
 		\textit{Ein LTI System ist mathematisch als ein Operator T(\{$\bullet$\})
-definiert der eine Eingangsfolge mit den Werten $x[n]$
+definiert der eine Eingangsfolge mit den Werten der Folge $x[n]$
 in eine Ausfangsfolge $y[n]$ abbildet}\\\\
 		\textbf{LTI-System} $y[n] = T(\{x[m]\} m \in \mathbb{Z}, n) \forall n \in \mathbb{Z}$\\
 		\textbf{Verk\"urzte Notation} $y[n] = T\{x[n]\}$\\
