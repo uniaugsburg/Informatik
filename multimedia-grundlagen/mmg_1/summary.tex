@@ -7,24 +7,39 @@
 	\section{Grundlegende Mathematik}
 		\subsection{Komplexe Zahlen}
 			\begin{align*}
-				\text{Sei }z \in \mathbb{Z} \text{ }& \\
+				\text{Sei }z \in \mathbb{C} \text{ }	& \\
 				\textbf{Karth. Darstellung } 			& z = x + yi \quad x, y \in \mathbb{R} \\
 				\textbf{Polardarstellung } 				& z = r [ \text{ cos }(\varphi) + \text{ sin }(\varphi)i ] = r \cdot e^{i \varphi} \\
 														& r = \sqrt{x^2 + y^2} (= |z|) \\
-														& \varphi = arg(z) = \text{arc}\tan \Big(\frac{x}{y}\Big) = \tan^{-1} \Big(\frac{x}{y}\Big), z \neq 0 \\
+														& \varphi = arg(z) = 
+														\begin{dcases}
+															\arccos{}\left(\frac{x}{r}\right) 	& : \text{wenn y} \geq 0\\
+															-\arccos{}\left(\frac{x}{r}\right) 	& : \text{wenn y} < 0\\
+															\text{undefiniert} 					& : \text{wenn y} = 0\\
+														\end{dcases}\\
+														& \varphi_\text{Bogenmaß} = \frac{\pi}{180} \cdot \varphi_\text{Grad} \text{ und } \varphi_\text{Grad} = \frac{180}{\pi} \cdot \varphi_\text{Bogenmaß}\\
 				\textbf{Komplex konjugiert } 			& \overline{z} = z^{*} = x - yi \\
 				\textbf{Karth. $\leftrightarrow$ Polar }& x = r \text{ cos }(\varphi), y = r \text{ sin }(\varphi) \\
-				\textbf{cos($x$) } & = \frac{e^{i x} + e^{-i x}}{2}\\
-				\textbf{sin($x$) } & = \frac{e^{i x} - e^{-i x}}{2i}\\
-				\textbf{$e^{ix}$ } & = \text{cos ($x$) + i sin ($x$)}\\
-				\textbf{Rotationsmatrix } & \begin{bmatrix}\cos \Theta & -\sin \Theta \\ \sin \Theta & \cos \Theta \end{bmatrix}\\
+				\textbf{Eulersche Formel } 				& {{e} ^{{i} \,y}=\cos \left(y\right)+ {i} \,\sin \left(y\right)}\\
+				\text{folglich auch }  					& {{e} ^{z}= {e} ^{x+{i} y}= {e} ^{x}\cdot {e} ^{ {i} y}= {e} ^{x}\cdot \left(\cos \left(y\right)+{i} \,\sin \left(y\right)\right)}\\
+				\textbf{cos($x$) } 						& = \frac{e^{i x} + e^{-i x}}{2}\\
+				\textbf{sin($x$) } 						& = \frac{e^{i x} - e^{-i x}}{2i}\\
+				\textbf{Rotationsmatrix }				& \text{$R_x\left(\Theta\right)$ (3x3-Matrix)} = \begin{bmatrix}1 & 0 & 0 \\
+																											0 & \cos \Theta & -\sin \Theta \\
+																											0 & \sin \Theta & \cos \Theta \end{bmatrix}\\
+														& \text{$R_y\left(\Theta\right)$ (3x3-Matrix)} = \begin{bmatrix}\cos \Theta & 0 & \sin \Theta \\
+																											0 & 1 & 0 \\
+																											 -\sin \Theta & 0 & \cos \Theta \end{bmatrix}\\
+														& \text{$R_z\left(\Theta\right)$ (3x3-Matrix)} = \begin{bmatrix}\cos \Theta & -\sin \Theta & 0 \\
+																											\sin \Theta & \cos \Theta & 0\\
+																											0 & 0 & 1 \end{bmatrix}\\
 			\end{align*}
 		\subsection{Ableitungen}
 			\begin{align*}
-				\textbf{Konstante } 	& \frac{\partial}{\partial t} [C \cdot f(t)] & = C \cdot \frac{\partial f(t)}{\partial t} & = C \cdot \frac{\partial}{\partial t} f(t)\\
-				\textbf{Faktorregel } 	& \frac{\partial}{\partial t} [C \cdot f(t)] & = C \cdot \frac{\partial f(t)}{\partial t} & = C \cdot \frac{\partial}{\partial t} f(t)\\
-				\textbf{Summenregel } 	& \frac{\partial}{\partial t} [f(t) + g(t)] & = \frac{\partial f(t)}{\partial t} + \frac{\partial g(t)}{\partial t} & \\
-				\textbf{Kettenregel } 	& \frac{\partial}{\partial t} f(x(t)) & = \frac{\partial f(x)}{\partial x} \frac{\partial x(t)}{\partial t} & = \frac{\partial f}{\partial x}\frac{\partial x}{\partial t}\\
+				\textbf{Konstante } 				& \frac{\partial}{\partial t} [C \cdot f(t)] & = C \cdot \frac{\partial f(t)}{\partial t} & = C \cdot \frac{\partial}{\partial t} f(t)\\
+				\textbf{Faktorregel } 				& \frac{\partial}{\partial t} [C \cdot f(t)] & = C \cdot \frac{\partial f(t)}{\partial t} & = C \cdot \frac{\partial}{\partial t} f(t)\\
+				\textbf{Summenregel } 				& \frac{\partial}{\partial t} [f(t) + g(t)] & = \frac{\partial f(t)}{\partial t} + \frac{\partial g(t)}{\partial t} \\
+				\textbf{Kettenregel } 				& \frac{\partial}{\partial t} f(x(t)) & = \frac{\partial f(x)}{\partial x} \frac{\partial x(t)}{\partial t} & = \frac{\partial f}{\partial x}\frac{\partial x}{\partial t}\\
 			\end{align*}
 		% \columnbreak
 	\section{Signalverarbeitung}
